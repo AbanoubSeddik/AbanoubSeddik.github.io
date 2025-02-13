@@ -3,62 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multimedia Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-        }
-        video {
-            width: 80%;
-            max-width: 800px;
-            border: 2px solid #333;
-        }
-        iframe {
-            width: 80%;
-            height: 600px;
-            border: none;
-        }
-        .image-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .image-gallery img {
-            width: 200px;
-            height: auto;
-            border: 2px solid #333;
-        }
-    </style>
+    <title>Fancy Video Player</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-
-    <h1>Embedded Multimedia Content</h1>
-
-    <!-- Video -->
-    <h2>Video</h2>
-    <video controls>
-        <source src="video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
-    <!-- PDF -->
-    <h2>PDF Document</h2>
-    <iframe src="document.pdf"></iframe>
-
-    <!-- Images -->
-    <h2>Image Gallery</h2>
-    <div class="image-gallery">
-        <img src="image1.jpg" alt="Image 1">
-        <img src="image2.jpg" alt="Image 2">
-        <img src="image3.jpg" alt="Image 3">
-        <img src="image4.jpg" alt="Image 4">
-        <img src="image5.jpg" alt="Image 5">
-        <img src="image6.jpg" alt="Image 6">
+<body class="flex items-center justify-center min-h-screen bg-[#323641]">
+    <div class="max-w-3xl w-full p-6 bg-gray-800 rounded-2xl shadow-lg">
+        <h2 class="text-white text-2xl font-bold mb-4 text-center">I LOVE YOU ❤️❤️</h2>
+        <div class="relative w-full rounded-lg overflow-hidden shadow-lg">
+            <video controls class="w-full rounded-lg">
+                <source src="my-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
     </div>
-
 </body>
 </html>
