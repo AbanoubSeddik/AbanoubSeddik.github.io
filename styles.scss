@@ -375,6 +375,26 @@ main button.no-btn span:nth-child(1):after {
         no-repeat center center / contain;
 }
 
+main button.no-btn {
+    width: 100px; // Set a fixed width for the NO button
+    height: 50px; // Set a fixed height for the NO button
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: normal; // Allow text to wrap
+}
+
+main button.no-btn span:nth-child(2) {
+    padding: 0.4em 1em;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 /* Button Hover Effects */
 main button:hover {
     --icon-scale: 1;

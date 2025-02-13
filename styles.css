@@ -340,6 +340,26 @@ main button.no-btn span:nth-child(1):after {
   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="80" font-size="80">😥</text></svg>') no-repeat center center/contain;
 }
 
+main button.no-btn {
+  width: 100px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: normal;
+}
+
+main button.no-btn span:nth-child(2) {
+  padding: 0.4em 1em;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 /* Button Hover Effects */
 main button:hover {
   --icon-scale: 1;
