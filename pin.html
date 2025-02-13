@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter PIN</title>
+    <style>
+        body {
+            background: #323641;
+            font-family: "Mona Sans", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .pin-container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .pin-input {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .pin-input input {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-size: 1.5rem;
+            border: 2px solid white;
+            border-radius: 8px;
+            background: transparent;
+            color: white;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .pin-input input:focus {
+            border-color: #00ff99;
+            box-shadow: 0 0 10px rgba(0, 255, 153, 0.7);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .container {
+            align-items: center;
+            background: #000;
+            border-radius: 40px;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            display: flex;
+            height: 80px;
+            justify-content: center;
+            position: relative;
+            width: 200px;
+            margin-top: 1rem;
+            cursor: pointer;
+            flex-direction: column;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .container:active {
+            transform: scale(0.95);
+        }
+
+        .hint-btn {
+            background: #ff0090;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+
+        }
+
+        .hint-btn:hover {
+            background: #0056b3;
+
+        }
+
+        .hint-content {
+            display: none;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .text {
+            color: white;
+            position: absolute;
+            transition: opacity 300ms;
+            user-select: none;
+            font-family: sans-serif;
+            font-weight: 600;
+            font-size: 26px;
+        }
+
+        .lottie-container {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pin-container">
+        <h2>Enter the Secret PIN</h2>
+        <div class="pin-input">
+            <input type="password" maxlength="1" pattern="[0-9]">
+            <input type="password" maxlength="1" pattern="[0-9]">
+            <input type="password" maxlength="1" pattern="[0-9]">
+            <input type="password" maxlength="1" pattern="[0-9]">
+        </div>
+        
+        <div class="button-container">
+        <div class="container" onclick="verifyPin()">
+            <span class="text" id="verify-text">VERIFY</span>
+            <div class="lottie-container" id="lottie-animation">
+                <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+                <dotlottie-player src="https://lottie.host/5c956484-9060-4925-a825-ce1b0fcaf61b/JAO1zrqeCh.lottie" background="transparent" speed="1" style="width: 100px; height: 100px" loop autoplay></dotlottie-player>
+            </div>
+        </div>
+            <button class="hint-btn" onclick="toggleHint()">?</button>
+        </div>
+
+        <div class="hint-content" id="hint">My Favourite Day 🎂</div>
+
+        <div class="error-message" style="display:none; color:#ff6b6b; margin-top:1rem;">Incorrect PIN. Try again!</div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const inputs = document.querySelectorAll(".pin-input input");
+            
+            inputs.forEach((input, index) => {
+                input.addEventListener("input", (e) => {
+                    if (e.target.value && index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                });
+
+                input.addEventListener("keydown", (e) => {
+                    if (e.key === "Backspace" && !e.target.value && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
+            });
+        });
+
+        function verifyPin() {
+            const inputs = document.querySelectorAll('.pin-input input');
+            const container = document.querySelector('.container');
+            const errorMessage = document.querySelector('.error-message');
+            const lottieAnimation = document.querySelector('#lottie-animation');
+            const verifyText = document.querySelector('#verify-text');
+            const correctPin = "0301";
+            
+            const enteredPin = Array.from(inputs).map(input => input.value).join('');
+            
+            if (enteredPin === correctPin) {
+                container.classList.add('active');
+                verifyText.style.opacity = '0';
+                setTimeout(() => {
+                    lottieAnimation.style.display = 'block';
+                }, 800);
+                setTimeout(() => {
+                    window.location.href = 'success.html';
+                }, 3000);
+            } else {
+                errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    errorMessage.style.opacity = '0';
+                }, 2000);
+                inputs.forEach(input => input.value = '');
+                inputs[0].focus();
+            }
+        }
+
+        function toggleHint() {
+            const hint = document.getElementById('hint');
+            hint.style.display = hint.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

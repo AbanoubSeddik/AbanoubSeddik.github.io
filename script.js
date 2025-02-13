@@ -35,10 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
         yesBtn.style.fontSize = `${newFontSize}em`;
     });
 
-    // Reset font size and NO button text when clicking yes
+    // Redirect to PIN page when clicking yes
     yesBtn.addEventListener('click', () => {
-        clickCount = 0;
-        yesBtn.style.fontSize = '1.5em'; // Reset to initial font size
-        noBtn.querySelector('span:nth-child(2)').textContent = "NO"; // Reset NO button text
+        window.location.href = 'pin.html';
     });
-});s
+});
