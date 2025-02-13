@@ -1,7 +1,51 @@
-body {
-  background: #323641;
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap");
+@font-face {
+  font-family: "Mona Sans";
+  src: url("https://assets.codepen.io/64/Mona-Sans.woff2") format("woff2 supports variations"), url("https://assets.codepen.io/64/Mona-Sans.woff2") format("woff2-variations");
+  font-weight: 100 1000;
+}
+:root {
+  --icon-scale: 0;
+  --icon-rotation: 0;
+  --icon-opacity: 0;
+  --color-pale-pink: hsl(272 16% 56.99%);
+  --color-dark-purple: hsl(269.35 100% 21%);
+  --color-light-purple: hsl(269.99 100% 40%);
+  --color-bubblegum-pink: hsl(300deg 97% 68%);
 }
 
+@supports (color: color(display-p3 0 0 0)) {
+  :root {
+    --color-pale-pink: color(display-p3 0.56 0.5 0.63);
+    --color-dark-purple: color(display-p3 0.19 0.01 0.41);
+    --color-light-purple: color(display-p3 0.37 0.01 0.78);
+    --color-bubblegum-pink: color(display-p3 0.94 0.36 1);
+  }
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+main {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #323641;
+  font-family: "Mona Sans", sans-serif;
+}
+
+/* Letter Styles */
 .letter-image {
   position: absolute;
   top: 50%;
@@ -18,6 +62,7 @@ body {
   width: 200px;
   transition: 0.4s;
 }
+
 .animated-mail .body {
   position: absolute;
   bottom: 0;
@@ -28,6 +73,7 @@ body {
   border-color: transparent transparent #e95f55 transparent;
   z-index: 2;
 }
+
 .animated-mail .top-fold {
   position: absolute;
   top: 50px;
@@ -40,6 +86,7 @@ body {
   border-color: #cf4a43 transparent transparent transparent;
   z-index: 2;
 }
+
 .animated-mail .back-fold {
   position: absolute;
   bottom: 0;
@@ -48,6 +95,7 @@ body {
   background: #cf4a43;
   z-index: 0;
 }
+
 .animated-mail .left-fold {
   position: absolute;
   bottom: 0;
@@ -58,6 +106,7 @@ body {
   border-color: transparent transparent transparent #e15349;
   z-index: 2;
 }
+
 .animated-mail .letter {
   left: 20px;
   bottom: 0px;
@@ -69,11 +118,13 @@ body {
   overflow: hidden;
   transition: 0.4s 0.2s;
 }
+
 .animated-mail .letter .letter-uborder {
   height: 10px;
   width: 100%;
   background: repeating-linear-gradient(-45deg, #cb5a5e, #cb5a5e 8px, transparent 8px, transparent 18px);
 }
+
 .animated-mail .letter .letter-dborder {
   height: 10px;
   width: 100%;
@@ -81,26 +132,23 @@ body {
   position: absolute;
   bottom: 0;
 }
-.animated-mail .letter .letter-title {
-  margin-top: 10px;
-  margin-left: 5px;
-  height: 10px;
-  width: 40%;
-  background: #cb5a5e;
-}
+
 .animated-mail .letter .letter-context {
   color: #cb5a5e;
   font-family: "lucida handwriting", cursive;
   font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
+
 .animated-mail .letter .letter-stamp {
-  margin-top: 10px; /* Adjusted margin-top */
+  margin-top: 10px;
   margin-left: 120px;
   border-radius: 100%;
   height: 30px;
   width: 30px;
   background: #cb5a5e;
-  opacity: 0.7; /* Adjusted opacity */
+  opacity: 0.7;
 }
 
 .shadow {
@@ -115,139 +163,233 @@ body {
   background: radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
 }
 
-.button-container {
-  position: absolute;
-  top: 200px; /* Adjust this value as needed to position below the shadow */
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 20px;
-  justify-content: center; /* Center the buttons horizontally */
-}
-
-.btn {
-  padding: 10px 20px;
-  font-size: 18px;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.yes-btn {
-  background-color: #28a745;
-  color: white;
-}
-.yes-btn:hover {
-  background-color: #218838;
-}
-
-.no-btn {
-  background-color: #dc3545;
-  color: white;
-}
-.no-btn:hover {
-  background-color: #c82333;
-}
-
+/* Letter Animation */
 .letter-image:hover .animated-mail {
   transform: translateY(50px);
-  -webkit-transform: translateY(50px);
-  -moz-transform: translateY(50px);
 }
+
 .letter-image:hover .animated-mail .top-fold {
   transition: transform 0.4s, z-index 0.2s;
   transform: rotateX(180deg);
-  -webkit-transition: transform 0.4s, z-index 0.2s;
-  -webkit-transform: rotateX(180deg);
-  -moz-transition: transform 0.4s, z-index 0.2s;
-  -moz-transform: rotateX(180deg);
   z-index: 0;
 }
+
 .letter-image:hover .animated-mail .letter {
   height: 180px;
 }
+
 .letter-image:hover .shadow {
   width: 250px;
 }
 
+/* Button Styles */
+main {
+  display: grid;
+  place-items: center;
+  --color-mix: color-mix(
+      in lch,
+      var(--color-bubblegum-pink) 60%,
+      var(--color-dark-purple)
+  );
+}
+
 .button-container {
-  margin-top: 300px; /* Adjust this value as needed */
   display: flex;
-  gap: 20px;
-  justify-content: center; /* Center the buttons horizontally */
+  gap: 1rem;
+  margin-top: 300px;
 }
 
-.btn {
-  padding: 10px 20px;
-  font-size: 18px;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
+main button {
+  all: unset;
   cursor: pointer;
-  transition: 0.3s;
-}
-
-.yes-btn {
-  background-color: #28a745;
+  font-size: 1.5em;
+  font-weight: 1000;
   color: white;
-}
-.yes-btn:hover {
-  background-color: #218838;
-}
-
-.no-btn {
-  background-color: #dc3545;
-  color: white;
-}
-.no-btn:hover {
-  background-color: #c82333;
+  position: relative;
+  transition: transform 0.2s ease;
 }
 
-/*
-@keyframes popOut {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.2);
-    }
+main button:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: scale(0.9);
+  outline: 0px solid var(--color-light-purple);
+  border-radius: 100000px;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+main button span:nth-child(2) {
+  position: relative;
+  padding: 0.4em 1em;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: block;
+  border-radius: 100000px;
+  transition: transform 0.2s ease;
 }
 
-.letter-image:hover {
-    .animated-mail {
-        transform: translateY(50px);
-    }
-
-    .animated-mail .body,
-    .animated-mail .top-fold,
-    .animated-mail .back-fold,
-    .animated-mail .left-fold,
-    .shadow {
-        animation: fadeOut 0.4s forwards;
-    }
-
-    .animated-mail .letter {
-        height: 180px;
-        animation: popOut 0.4s forwards;
-    }
-
-    .shadow {
-        width: 250px;
-    }
+main button span:nth-child(2):before,
+main button span:nth-child(2):after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: var(--icon-opacity);
+  transform: scale(var(--icon-scale)) rotate(calc(var(--icon-rotation) * -1deg));
+  transition: transform 0.2s ease, opacity 0.2s ease, --icon-rotation 0.4s cubic-bezier(0.02, 1.02, 0.67, 1.06);
+  pointer-events: none;
+  z-index: -1;
 }
 
+/* YES button styles */
+main button.yes-btn:before {
+  background: linear-gradient(to bottom right, var(--color-pale-pink), var(--color-pale-pink));
+}
 
-*/
+main button.yes-btn span:nth-child(2):before {
+  width: 1.8em;
+  top: -0.6em;
+  left: -0.6em;
+  background: url(https://assets.codepen.io/64/heart+%286%29+%281%29.png) no-repeat center center/contain;
+  z-index: -1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2)) saturate(150%);
+}
+
+main button.yes-btn span:nth-child(2):after {
+  width: 1em;
+  top: 0.8em;
+  left: 0.4em;
+  background: url(https://assets.codepen.io/64/heart+%285%29+%281%29.png) no-repeat center center/contain;
+  filter: blur(2px) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2)) saturate(150%);
+}
+
+main button.yes-btn span:nth-child(1) {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: transparent;
+}
+
+main button.yes-btn span:nth-child(1):before {
+  width: 1.5em;
+  top: -0.8em;
+  right: 0.4em;
+  background: url(https://assets.codepen.io/64/heart+%283%29+%281%29.png) no-repeat center center/contain;
+  filter: blur(1px) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2)) saturate(150%);
+}
+
+main button.yes-btn span:nth-child(1):after {
+  width: 1.7em;
+  top: 0.8em;
+  right: -0.4em;
+  background: url(https://assets.codepen.io/64/heart+%284%29+%281%29.png) no-repeat center center/contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2)) saturate(150%);
+}
+
+/* NO button styles */
+main button.no-btn:before {
+  background: linear-gradient(to bottom right, #8b8b8b, #6b6b6b);
+}
+
+main button.no-btn span:nth-child(2):before {
+  width: 1.8em;
+  top: -0.6em;
+  left: -0.6em;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="80" font-size="80">😢</text></svg>') no-repeat center center/contain;
+  z-index: -1;
+}
+
+main button.no-btn span:nth-child(2):after {
+  width: 1em;
+  top: 0.8em;
+  left: 0.4em;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="80" font-size="80">😭</text></svg>') no-repeat center center/contain;
+}
+
+main button.no-btn span:nth-child(1) {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: transparent;
+}
+
+main button.no-btn span:nth-child(1):before {
+  width: 1.5em;
+  top: -0.8em;
+  right: 0.4em;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="80" font-size="80">😔</text></svg>') no-repeat center center/contain;
+}
+
+main button.no-btn span:nth-child(1):after {
+  width: 1.7em;
+  top: 0.8em;
+  right: -0.4em;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="80" font-size="80">😥</text></svg>') no-repeat center center/contain;
+}
+
+/* Button Hover Effects */
+main button:hover {
+  --icon-scale: 1;
+  --icon-rotation: 0;
+  --icon-opacity: 1;
+}
+
+main button.yes-btn:hover:before {
+  transform: scale(1.05);
+  background: linear-gradient(to bottom right, var(--color-dark-purple), var(--color-light-purple));
+  box-shadow: 0 4px 22px -8px var(--color-mix);
+}
+
+main button.no-btn:hover:before {
+  transform: scale(1.05);
+  background: linear-gradient(to bottom right, #666666, #444444);
+  box-shadow: 0 4px 22px -8px rgba(0, 0, 0, 0.5);
+}
+
+main button:hover > span:nth-child(2) {
+  transform: scale(0.95);
+}
+
+main button:hover:active {
+  --icon-scale: 0.8;
+  --icon-rotation: 20;
+  transform: scale(1.05);
+}
+
+main button:hover:active:before {
+  box-shadow: 0 2px 12px var(--color-mix);
+}
+
+main button:hover:active span:before,
+main button:hover:active span:after {
+  transition-delay: 0s;
+}
+
+main button:hover:active span:nth-child(odd):before,
+main button:hover:active span:nth-child(even):before {
+  --icon-rotation: -20;
+}
+
+main button:hover:active span:nth-child(odd):after,
+main button:hover:active span:nth-child(even):after {
+  --icon-rotation: 20;
+}
+
+main button:hover:active:before {
+  transform: scale(0.95);
+}
 
 /*# sourceMappingURL=styles.css.map */
